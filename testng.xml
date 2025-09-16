@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!-- <suite name="AllTestsSuite" verbose="1"> -->
+    <suite name="Annotation Execution Suite" >
+        <test name="Booking API Test">
+        <parameter name="program"  value="Bootcamp API Automation"/>
+            <classes>
+                <class name="happyFlow"/>
+                <class name="negativeFlow"/>
+            </classes>
+        </test>
+    </suite>
+<!-- </suite> -->
