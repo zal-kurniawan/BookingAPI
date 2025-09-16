@@ -116,7 +116,7 @@ public class happyFlow {
                                 checkOut);
         }
 
-        @Test(priority = 5, dependsOnMethods = "createBooking")
+        @Test(priority = 5, dependsOnMethods = "updateBooking")
         public void deleteBooking() {
                 Response response = given()
                                 .baseUri("https://restful-booker.herokuapp.com/booking/" + bookingId)
