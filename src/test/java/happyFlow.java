@@ -117,6 +117,37 @@ public class happyFlow {
         }
 
         @Test(priority = 5, dependsOnMethods = "updateBooking")
+        public void updatePartialBooking() {
+                firstName = "Jojon";
+                lastName = "Sudarsono";
+                String reqBody = "{\n" + //
+                                "    \"firstname\" : \"" + firstName + "\",\n" + //
+                                "    \"lastname\" : \"" + lastName + "\"\n" + //
+                                "}";
+                Response response = given()
+                                .baseUri("https://restful-booker.herokuapp.com/booking/" + bookingId)
+                                .header("Content-Type", "application/json")
+                                .header("Accept", "application/json")
+                                .header("Cookie", "token=" + token)
+                                .body(reqBody)
+                                .when()
+                                .patch();
+                Assert.assertEquals(response.statusCode(), 200, "Status code should be 200");
+        }
+
+        @Test(priority = 6, dependsOnMethods = "updatePartialBooking")
+        public void assertBookingAfterPartialUpdate() {
+                Response response = given()
+                                .baseUri("https://restful-booker.herokuapp.com/booking/" + bookingId)
+                                .header("Content-Type", "application/json")
+                                .when()
+                                .get();
+                Assert.assertEquals(response.statusCode(), 200, "Status code should be 200");
+                Assert.assertEquals(response.jsonPath().getString("firstname"), firstName);
+                Assert.assertEquals(response.jsonPath().getString("lastname"), lastName);
+        }
+
+        @Test(priority = 7, dependsOnMethods = "updatePartialBooking")
         public void deleteBooking() {
                 Response response = given()
                                 .baseUri("https://restful-booker.herokuapp.com/booking/" + bookingId)
@@ -127,7 +158,7 @@ public class happyFlow {
                 Assert.assertEquals(response.statusCode(), 201, "Status code should be 201");
         }
 
-        @Test(priority = 6, dependsOnMethods = "deleteBooking")
+        @Test(priority = 8, dependsOnMethods = "deleteBooking")
         public void assertBookingAfterDelete() {
                 Response response = given()
                                 .baseUri("https://restful-booker.herokuapp.com/booking/" + bookingId)
