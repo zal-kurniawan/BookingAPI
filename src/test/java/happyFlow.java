@@ -9,7 +9,7 @@ public class happyFlow {
         int totalPrice;
 
         @BeforeClass
-        public void setup() {
+        public void login() {
                 String reqBody = "{\n" + //
                                 "    \"username\" : \"admin\",\n" + //
                                 "    \"password\" : \"password123\"\n" + //
