@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="TestSuite" time="18.946" tests="13" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="TestSuite" time="11.131" tests="13" errors="0" skipped="5" failures="2">
   <properties>
     <property name="java.specification.version" value="24"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.class.path" value="/Users/rizalkurniawan/Documents/Bootcamp After Office/bookingapi/target/test-classes:/Users/rizalkurniawan/Documents/Bootcamp After Office/bookingapi/target/classes:/Users/rizalkurniawan/.m2/repository/io/rest-assured/rest-assured/5.5.6/rest-assured-5.5.6.jar:/Users/rizalkurniawan/.m2/repository/org/apache/groovy/groovy/4.0.22/groovy-4.0.22.jar:/Users/rizalkurniawan/.m2/repository/org/apache/groovy/groovy-xml/4.0.22/groovy-xml-4.0.22.jar:/Users/rizalkurniawan/.m2/repository/org/apache/httpcomponents/httpclient/4.5.13/httpclient-4.5.13.jar:/Users/rizalkurniawan/.m2/repository/org/apache/httpcomponents/httpcore/4.4.13/httpcore-4.4.13.jar:/Users/rizalkurniawan/.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar:/Users/rizalkurniawan/.m2/repository/commons-codec/commons-codec/1.11/commons-codec-1.11.jar:/Users/rizalkurniawan/.m2/repository/org/apache/httpcomponents/httpmime/4.5.13/httpmime-4.5.13.jar:/Users/rizalkurniawan/.m2/repository/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar:/Users/rizalkurniawan/.m2/repository/org/ccil/cowan/tagsoup/tagsoup/1.2.1/tagsoup-1.2.1.jar:/Users/rizalkurniawan/.m2/repository/io/rest-assured/json-path/5.5.6/json-path-5.5.6.jar:/Users/rizalkurniawan/.m2/repository/org/apache/groovy/groovy-json/4.0.22/groovy-json-4.0.22.jar:/Users/rizalkurniawan/.m2/repository/io/rest-assured/rest-assured-common/5.5.6/rest-assured-common-5.5.6.jar:/Users/rizalkurniawan/.m2/repository/io/rest-assured/xml-path/5.5.6/xml-path-5.5.6.jar:/Users/rizalkurniawan/.m2/repository/org/apache/commons/commons-lang3/3.18.0/commons-lang3-3.18.0.jar:/Users/rizalkurniawan/.m2/repository/org/testng/testng/7.11.0/testng-7.11.0.jar:/Users/rizalkurniawan/.m2/repository/org/slf4j/slf4j-api/2.0.16/slf4j-api-2.0.16.jar:/Users/rizalkurniawan/.m2/repository/org/jcommander/jcommander/1.83/jcommander-1.83.jar:/Users/rizalkurniawan/.m2/repository/org/webjars/jquery/3.7.1/jquery-3.7.1.jar:"/>
+    <property name="java.class.path" value="/Users/rizalkurniawan/Documents/Bootcamp After Office/bookingapi/target/test-classes:/Users/rizalkurniawan/Documents/Bootcamp After Office/bookingapi/target/classes:/Users/rizalkurniawan/.m2/repository/io/rest-assured/rest-assured/5.5.6/rest-assured-5.5.6.jar:/Users/rizalkurniawan/.m2/repository/org/apache/groovy/groovy/4.0.22/groovy-4.0.22.jar:/Users/rizalkurniawan/.m2/repository/org/apache/groovy/groovy-xml/4.0.22/groovy-xml-4.0.22.jar:/Users/rizalkurniawan/.m2/repository/org/apache/httpcomponents/httpclient/4.5.13/httpclient-4.5.13.jar:/Users/rizalkurniawan/.m2/repository/org/apache/httpcomponents/httpcore/4.4.13/httpcore-4.4.13.jar:/Users/rizalkurniawan/.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar:/Users/rizalkurniawan/.m2/repository/commons-codec/commons-codec/1.11/commons-codec-1.11.jar:/Users/rizalkurniawan/.m2/repository/org/apache/httpcomponents/httpmime/4.5.13/httpmime-4.5.13.jar:/Users/rizalkurniawan/.m2/repository/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar:/Users/rizalkurniawan/.m2/repository/org/ccil/cowan/tagsoup/tagsoup/1.2.1/tagsoup-1.2.1.jar:/Users/rizalkurniawan/.m2/repository/io/rest-assured/json-path/5.5.6/json-path-5.5.6.jar:/Users/rizalkurniawan/.m2/repository/org/apache/groovy/groovy-json/4.0.22/groovy-json-4.0.22.jar:/Users/rizalkurniawan/.m2/repository/io/rest-assured/rest-assured-common/5.5.6/rest-assured-common-5.5.6.jar:/Users/rizalkurniawan/.m2/repository/io/rest-assured/xml-path/5.5.6/xml-path-5.5.6.jar:/Users/rizalkurniawan/.m2/repository/org/apache/commons/commons-lang3/3.18.0/commons-lang3-3.18.0.jar:/Users/rizalkurniawan/.m2/repository/io/github/cdimascio/dotenv-java/3.2.0/dotenv-java-3.2.0.jar:/Users/rizalkurniawan/.m2/repository/org/testng/testng/7.11.0/testng-7.11.0.jar:/Users/rizalkurniawan/.m2/repository/org/slf4j/slf4j-api/2.0.16/slf4j-api-2.0.16.jar:/Users/rizalkurniawan/.m2/repository/org/jcommander/jcommander/1.83/jcommander-1.83.jar:/Users/rizalkurniawan/.m2/repository/org/webjars/jquery/3.7.1/jquery-3.7.1.jar:/Users/rizalkurniawan/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.20.0/jackson-databind-2.20.0.jar:/Users/rizalkurniawan/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.20/jackson-annotations-2.20.jar:/Users/rizalkurniawan/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.20.0/jackson-core-2.20.0.jar:"/>
     <property name="java.vm.vendor" value="Homebrew"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.vendor.url" value="https://github.com/Homebrew/homebrew-core/issues"/>
@@ -12,10 +12,10 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="ID"/>
     <property name="sun.boot.library.path" value="/opt/homebrew/Cellar/openjdk/24.0.2/libexec/openjdk.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/rizalkurniawan/Documents/Bootcamp After Office/bookingapi/target/surefire/surefirebooter2106123397199605355.jar /Users/rizalkurniawan/Documents/Bootcamp After Office/bookingapi/target/surefire 2025-09-16T20-03-12_756-jvmRun1 surefire5905509725903493248tmp surefire_016954560011100659323tmp"/>
+    <property name="sun.java.command" value="/Users/rizalkurniawan/Documents/Bootcamp After Office/bookingapi/target/surefire/surefirebooter5867197861649989422.jar /Users/rizalkurniawan/Documents/Bootcamp After Office/bookingapi/target/surefire 2025-09-22T19-12-30_991-jvmRun1 surefire14347650484867826706tmp surefire_07186160376713666722tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="/Users/rizalkurniawan/Documents/Bootcamp After Office/bookingapi/target/test-classes:/Users/rizalkurniawan/Documents/Bootcamp After Office/bookingapi/target/classes:/Users/rizalkurniawan/.m2/repository/io/rest-assured/rest-assured/5.5.6/rest-assured-5.5.6.jar:/Users/rizalkurniawan/.m2/repository/org/apache/groovy/groovy/4.0.22/groovy-4.0.22.jar:/Users/rizalkurniawan/.m2/repository/org/apache/groovy/groovy-xml/4.0.22/groovy-xml-4.0.22.jar:/Users/rizalkurniawan/.m2/repository/org/apache/httpcomponents/httpclient/4.5.13/httpclient-4.5.13.jar:/Users/rizalkurniawan/.m2/repository/org/apache/httpcomponents/httpcore/4.4.13/httpcore-4.4.13.jar:/Users/rizalkurniawan/.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar:/Users/rizalkurniawan/.m2/repository/commons-codec/commons-codec/1.11/commons-codec-1.11.jar:/Users/rizalkurniawan/.m2/repository/org/apache/httpcomponents/httpmime/4.5.13/httpmime-4.5.13.jar:/Users/rizalkurniawan/.m2/repository/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar:/Users/rizalkurniawan/.m2/repository/org/ccil/cowan/tagsoup/tagsoup/1.2.1/tagsoup-1.2.1.jar:/Users/rizalkurniawan/.m2/repository/io/rest-assured/json-path/5.5.6/json-path-5.5.6.jar:/Users/rizalkurniawan/.m2/repository/org/apache/groovy/groovy-json/4.0.22/groovy-json-4.0.22.jar:/Users/rizalkurniawan/.m2/repository/io/rest-assured/rest-assured-common/5.5.6/rest-assured-common-5.5.6.jar:/Users/rizalkurniawan/.m2/repository/io/rest-assured/xml-path/5.5.6/xml-path-5.5.6.jar:/Users/rizalkurniawan/.m2/repository/org/apache/commons/commons-lang3/3.18.0/commons-lang3-3.18.0.jar:/Users/rizalkurniawan/.m2/repository/org/testng/testng/7.11.0/testng-7.11.0.jar:/Users/rizalkurniawan/.m2/repository/org/slf4j/slf4j-api/2.0.16/slf4j-api-2.0.16.jar:/Users/rizalkurniawan/.m2/repository/org/jcommander/jcommander/1.83/jcommander-1.83.jar:/Users/rizalkurniawan/.m2/repository/org/webjars/jquery/3.7.1/jquery-3.7.1.jar:"/>
+    <property name="surefire.test.class.path" value="/Users/rizalkurniawan/Documents/Bootcamp After Office/bookingapi/target/test-classes:/Users/rizalkurniawan/Documents/Bootcamp After Office/bookingapi/target/classes:/Users/rizalkurniawan/.m2/repository/io/rest-assured/rest-assured/5.5.6/rest-assured-5.5.6.jar:/Users/rizalkurniawan/.m2/repository/org/apache/groovy/groovy/4.0.22/groovy-4.0.22.jar:/Users/rizalkurniawan/.m2/repository/org/apache/groovy/groovy-xml/4.0.22/groovy-xml-4.0.22.jar:/Users/rizalkurniawan/.m2/repository/org/apache/httpcomponents/httpclient/4.5.13/httpclient-4.5.13.jar:/Users/rizalkurniawan/.m2/repository/org/apache/httpcomponents/httpcore/4.4.13/httpcore-4.4.13.jar:/Users/rizalkurniawan/.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar:/Users/rizalkurniawan/.m2/repository/commons-codec/commons-codec/1.11/commons-codec-1.11.jar:/Users/rizalkurniawan/.m2/repository/org/apache/httpcomponents/httpmime/4.5.13/httpmime-4.5.13.jar:/Users/rizalkurniawan/.m2/repository/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar:/Users/rizalkurniawan/.m2/repository/org/ccil/cowan/tagsoup/tagsoup/1.2.1/tagsoup-1.2.1.jar:/Users/rizalkurniawan/.m2/repository/io/rest-assured/json-path/5.5.6/json-path-5.5.6.jar:/Users/rizalkurniawan/.m2/repository/org/apache/groovy/groovy-json/4.0.22/groovy-json-4.0.22.jar:/Users/rizalkurniawan/.m2/repository/io/rest-assured/rest-assured-common/5.5.6/rest-assured-common-5.5.6.jar:/Users/rizalkurniawan/.m2/repository/io/rest-assured/xml-path/5.5.6/xml-path-5.5.6.jar:/Users/rizalkurniawan/.m2/repository/org/apache/commons/commons-lang3/3.18.0/commons-lang3-3.18.0.jar:/Users/rizalkurniawan/.m2/repository/io/github/cdimascio/dotenv-java/3.2.0/dotenv-java-3.2.0.jar:/Users/rizalkurniawan/.m2/repository/org/testng/testng/7.11.0/testng-7.11.0.jar:/Users/rizalkurniawan/.m2/repository/org/slf4j/slf4j-api/2.0.16/slf4j-api-2.0.16.jar:/Users/rizalkurniawan/.m2/repository/org/jcommander/jcommander/1.83/jcommander-1.83.jar:/Users/rizalkurniawan/.m2/repository/org/webjars/jquery/3.7.1/jquery-3.7.1.jar:/Users/rizalkurniawan/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.20.0/jackson-databind-2.20.0.jar:/Users/rizalkurniawan/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.20/jackson-annotations-2.20.jar:/Users/rizalkurniawan/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.20.0/jackson-core-2.20.0.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/Users/rizalkurniawan"/>
     <property name="user.language" value="en"/>
@@ -29,7 +29,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/rizalkurniawan/Documents/Bootcamp After Office/bookingapi/target/surefire/surefirebooter2106123397199605355.jar"/>
+    <property name="surefire.real.class.path" value="/Users/rizalkurniawan/Documents/Bootcamp After Office/bookingapi/target/surefire/surefirebooter5867197861649989422.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="24.0.2"/>
@@ -58,17 +58,47 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="68.0"/>
   </properties>
-  <testcase name="createBooking" classname="happyFlow" time="1.273"/>
-  <testcase name="assertBookingAfterCreate" classname="happyFlow" time="1.283"/>
-  <testcase name="updateBooking" classname="happyFlow" time="1.23"/>
-  <testcase name="assertBookingAfterUpdate" classname="happyFlow" time="1.265"/>
-  <testcase name="updatePartialBooking" classname="happyFlow" time="1.233"/>
-  <testcase name="assertBookingAfterPartialUpdate" classname="happyFlow" time="1.251"/>
-  <testcase name="deleteBooking" classname="happyFlow" time="1.223"/>
-  <testcase name="assertBookingAfterDelete" classname="happyFlow" time="1.225"/>
-  <testcase name="authWithInvalidCredentials" classname="negativeFlow" time="1.252"/>
-  <testcase name="bookingIdDoesNotExist" classname="negativeFlow" time="1.205"/>
-  <testcase name="createBookingWithInvalidData" classname="negativeFlow" time="1.231"/>
-  <testcase name="updateBookingWithInvalidAuth" classname="negativeFlow" time="1.215"/>
-  <testcase name="updateBookingWithoutAuth" classname="negativeFlow" time="1.261"/>
+  <testcase name="createBooking" classname="testCase.happyFlow" time="2.348"/>
+  <testcase name="assertBookingAfterCreate" classname="testCase.happyFlow" time="0.033">
+    <failure message="Connection refused" type="java.net.ConnectException">java.net.ConnectException: Connection refused
+	at testCase.happyFlow.assertBookingAfterCreate(happyFlow.java:45)
+</failure>
+    <system-out><![CDATA[Request method:	GET
+Request URI:	http://localhost:8080/booking/819
+Proxy:			<none>
+Request params:	<none>
+Query params:	<none>
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+Cookies:		<none>
+Multiparts:		<none>
+Body:			<none>
+]]></system-out>
+  </testcase>
+  <testcase name="updateBooking" classname="testCase.happyFlow" time="1.325">
+    <failure message="Status code should be 200 expected [200] but found [403]" type="java.lang.AssertionError">java.lang.AssertionError: Status code should be 200 expected [200] but found [403]
+	at testCase.happyFlow.updateBooking(happyFlow.java:83)
+</failure>
+  </testcase>
+  <testcase name="assertBookingAfterUpdate" classname="testCase.happyFlow" time="0">
+    <skipped message="Method testCase.happyFlow.assertBookingAfterUpdate() on instance testCase.happyFlow@7920ba90 depends on not successfully finished methods &#10;[testCase.happyFlow.updateBooking() on instance testCase.happyFlow@7920ba90]"/>
+  </testcase>
+  <testcase name="updatePartialBooking" classname="testCase.happyFlow" time="0">
+    <skipped message="Method testCase.happyFlow.updatePartialBooking() on instance testCase.happyFlow@7920ba90 depends on not successfully finished methods &#10;[testCase.happyFlow.updateBooking() on instance testCase.happyFlow@7920ba90]"/>
+  </testcase>
+  <testcase name="assertBookingAfterPartialUpdate" classname="testCase.happyFlow" time="0">
+    <skipped message="Method testCase.happyFlow.assertBookingAfterPartialUpdate() on instance testCase.happyFlow@7920ba90 depends on not successfully finished methods &#10;[testCase.happyFlow.updatePartialBooking() on instance testCase.happyFlow@7920ba90]"/>
+  </testcase>
+  <testcase name="deleteBooking" classname="testCase.happyFlow" time="0">
+    <skipped message="Method testCase.happyFlow.deleteBooking() on instance testCase.happyFlow@7920ba90 depends on not successfully finished methods &#10;[testCase.happyFlow.updatePartialBooking() on instance testCase.happyFlow@7920ba90]"/>
+  </testcase>
+  <testcase name="assertBookingAfterDelete" classname="testCase.happyFlow" time="0">
+    <skipped message="Method testCase.happyFlow.assertBookingAfterDelete() on instance testCase.happyFlow@7920ba90 depends on not successfully finished methods &#10;[testCase.happyFlow.deleteBooking() on instance testCase.happyFlow@7920ba90]"/>
+  </testcase>
+  <testcase name="authWithInvalidCredentials" classname="testCase.negativeFlow" time="1.842"/>
+  <testcase name="bookingIdDoesNotExist" classname="testCase.negativeFlow" time="1.267"/>
+  <testcase name="createBookingWithInvalidData" classname="testCase.negativeFlow" time="1.472"/>
+  <testcase name="updateBookingWithInvalidAuth" classname="testCase.negativeFlow" time="1.27"/>
+  <testcase name="updateBookingWithoutAuth" classname="testCase.negativeFlow" time="1.216"/>
 </testsuite>

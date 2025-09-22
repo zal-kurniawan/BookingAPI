@@ -1,6 +1,10 @@
+package testCase;
+
 import static io.restassured.RestAssured.given;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import apiengine.BookingCollectionAPI;
 import io.restassured.response.Response;
 
 public class negativeFlow {
@@ -23,11 +27,7 @@ public class negativeFlow {
 
         @Test
         public void bookingIdDoesNotExist() {
-                Response response = given()
-                                .baseUri("https://restful-booker.herokuapp.com/booking/99999")
-                                .header("Content-Type", "application/json")
-                                .when()
-                                .get();
+                Response response = BookingCollectionAPI.getBookingById("9999999");
                 Assert.assertEquals(response.statusCode(), 404, "non-existent booking ID");
         }
 
@@ -44,12 +44,7 @@ public class negativeFlow {
                                 "    },\n" + //
                                 "    \"additionalneeds\" : \"Breakfast\"\n" + //
                                 "}";
-                Response response = given()
-                                .baseUri("https://restful-booker.herokuapp.com/booking")
-                                .header("Content-Type", "application/json")
-                                .body(reqBody)
-                                .when()
-                                .post();
+                Response response = BookingCollectionAPI.createBooking(reqBody);
                 Assert.assertEquals(response.statusCode(), 400, "Invalid Request");
         }
 
@@ -67,12 +62,7 @@ public class negativeFlow {
                                 "    \"additionalneeds\" : \"Breakfast\"\n" + //
                                 "}";
 
-                Response response = given()
-                                .baseUri("https://restful-booker.herokuapp.com/booking/1")
-                                .header("Content-Type", "application/json")
-                                .body(reqBody)
-                                .when()
-                                .put();
+                Response response = BookingCollectionAPI.updateBooking("1", reqBody, "");
                 Assert.assertEquals(response.statusCode(), 403, "Forbidden");
         }
 
@@ -90,13 +80,7 @@ public class negativeFlow {
                                 "    \"additionalneeds\" : \"Breakfast\"\n" + //
                                 "}";
 
-                Response response = given()
-                                .baseUri("https://restful-booker.herokuapp.com/booking/1")
-                                .header("Content-Type", "application/json")
-                                .header("Cookie", "token=invalid")
-                                .body(reqBody)
-                                .when()
-                                .put();
+                Response response = BookingCollectionAPI.updateBooking("1", reqBody, "invalidtoken");
                 Assert.assertEquals(response.statusCode(), 403, "Forbidden");
         }
 }

@@ -4,8 +4,8 @@
         <test name="Booking API Test">
         <parameter name="program"  value="Bootcamp API Automation"/>
             <classes>
-                <class name="happyFlow"/>
-                <class name="negativeFlow"/>
+                <class name="testCase.happyFlow"/>
+                <class name="testCase.negativeFlow"/>
             </classes>
         </test>
     </suite>

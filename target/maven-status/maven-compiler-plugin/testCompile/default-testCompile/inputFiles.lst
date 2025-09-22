@@ -1,2 +1,3 @@
-/Users/rizalkurniawan/Documents/Bootcamp After Office/bookingapi/src/test/java/happyFlow.java
-/Users/rizalkurniawan/Documents/Bootcamp After Office/bookingapi/src/test/java/negativeFlow.java
+/Users/rizalkurniawan/Documents/Bootcamp After Office/bookingapi/src/test/java/apiengine/BookingCollectionAPI.java
+/Users/rizalkurniawan/Documents/Bootcamp After Office/bookingapi/src/test/java/testCase/happyFlow.java
+/Users/rizalkurniawan/Documents/Bootcamp After Office/bookingapi/src/test/java/testCase/negativeFlow.java
