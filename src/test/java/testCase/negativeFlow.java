@@ -3,11 +3,11 @@ package testCase;
 import static io.restassured.RestAssured.given;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
+import com.example.base.BaseTest;
 import apiengine.BookingCollectionAPI;
 import io.restassured.response.Response;
 
-public class negativeFlow {
+public class negativeFlow extends BaseTest {
         @Test
         public void authWithInvalidCredentials() {
                 String reqBody = "{\n" + //

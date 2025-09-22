@@ -1,12 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: TestSuite
 -------------------------------------------------------------------------------
-Tests run: 13, Failures: 2, Errors: 0, Skipped: 5, Time elapsed: 11.131 s <<< FAILURE! - in TestSuite
-assertBookingAfterCreate(testCase.happyFlow)  Time elapsed: 0.033 s  <<< FAILURE!
-java.net.ConnectException: Connection refused
-	at testCase.happyFlow.assertBookingAfterCreate(happyFlow.java:45)
-
-updateBooking(testCase.happyFlow)  Time elapsed: 1.325 s  <<< FAILURE!
-java.lang.AssertionError: Status code should be 200 expected [200] but found [403]
-	at testCase.happyFlow.updateBooking(happyFlow.java:83)
-
+Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 22.857 s - in TestSuite
