@@ -24,6 +24,7 @@ public class negativeFlow extends BaseTest {
                                 .body(reqBody)
                                 .when()
                                 .post();
+                // Assertion
                 Assert.assertEquals(response.statusCode(), 200, "Status code should be 200");
                 Assert.assertNull(response.jsonPath().getString("token"), "Token should be null");
         }
@@ -48,13 +49,15 @@ public class negativeFlow extends BaseTest {
                                 "    \"additionalneeds\" : \"Breakfast\"\n" + //
                                 "}";
                 Response response = BookingAPI.createBooking(reqBody);
-                Assert.assertEquals(response.statusCode(), 400, "Invalid Request");
+                // Assertion
+                Assert.assertEquals(response.statusCode(), 400, "Bad Request");
         }
 
         @Test
         public void updateBookingWithoutAuth() {
                 RequestUpdateBooking request = Helper.findPayloadByUseCase("update_booking.json", "updateWithoutAuth",
                                 RequestUpdateBooking.class);
+                // Assertion
                 Response response = BookingAPI.updateBooking("1", request, "");
                 Assert.assertEquals(response.statusCode(), 403, "Forbidden");
         }
@@ -64,6 +67,7 @@ public class negativeFlow extends BaseTest {
                 RequestUpdateBooking request = Helper.findPayloadByUseCase("update_booking.json",
                                 "updateWithInvalidAuth",
                                 RequestUpdateBooking.class);
+                // Assertion
                 Response response = BookingAPI.updateBooking("1", request, "invalidtoken");
                 Assert.assertEquals(response.statusCode(), 403, "Forbidden");
         }
