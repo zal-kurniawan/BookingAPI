@@ -28,7 +28,7 @@ public class BookingCollectionAPI {
     }
 
     public static <T> Response partialUpdateBooking(String bookingId, T reqBody, String token) {
-        return given().log().all()
+        return given()
                 .header("Cookie", "token=" + token)
                 .body(reqBody)
                 .when()

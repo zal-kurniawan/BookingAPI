@@ -1,10 +1,5 @@
 package testCase;
 
-import static io.restassured.RestAssured.request;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.example.base.BaseTest;
