@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.example.base.BaseTest;
 
-import apiEngine.BookingCollectionAPI;
+import apiEngine.BookingAPI;
 import io.restassured.response.Response;
 
 public class negativeFlow extends BaseTest {
@@ -28,7 +28,7 @@ public class negativeFlow extends BaseTest {
 
         @Test
         public void bookingIdDoesNotExist() {
-                Response response = BookingCollectionAPI.getBookingById("9999999");
+                Response response = BookingAPI.getBookingById("9999999");
                 Assert.assertEquals(response.statusCode(), 404, "non-existent booking ID");
         }
 
@@ -45,7 +45,7 @@ public class negativeFlow extends BaseTest {
                                 "    },\n" + //
                                 "    \"additionalneeds\" : \"Breakfast\"\n" + //
                                 "}";
-                Response response = BookingCollectionAPI.createBooking(reqBody);
+                Response response = BookingAPI.createBooking(reqBody);
                 Assert.assertEquals(response.statusCode(), 400, "Invalid Request");
         }
 
@@ -63,7 +63,7 @@ public class negativeFlow extends BaseTest {
                                 "    \"additionalneeds\" : \"Breakfast\"\n" + //
                                 "}";
 
-                Response response = BookingCollectionAPI.updateBooking("1", reqBody, "");
+                Response response = BookingAPI.updateBooking("1", reqBody, "");
                 Assert.assertEquals(response.statusCode(), 403, "Forbidden");
         }
 
@@ -81,7 +81,7 @@ public class negativeFlow extends BaseTest {
                                 "    \"additionalneeds\" : \"Breakfast\"\n" + //
                                 "}";
 
-                Response response = BookingCollectionAPI.updateBooking("1", reqBody, "invalidtoken");
+                Response response = BookingAPI.updateBooking("1", reqBody, "invalidtoken");
                 Assert.assertEquals(response.statusCode(), 403, "Forbidden");
         }
 }

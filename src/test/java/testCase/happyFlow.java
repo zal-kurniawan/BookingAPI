@@ -9,7 +9,7 @@ import com.example.model.response.ResponseCreateBooking;
 import com.example.model.response.ResponseGetBookingByID;
 import com.example.model.response.ResponseUpdateBooking;
 import com.example.utils.Helper;
-import apiEngine.BookingCollectionAPI;
+import apiEngine.BookingAPI;
 import io.restassured.response.Response;
 
 public class happyFlow extends BaseTest {
@@ -20,7 +20,7 @@ public class happyFlow extends BaseTest {
         public void createBooking() {
                 RequestCreateBooking request = Helper.findPayloadByUseCase("create_booking.json", "createBooking1",
                                 RequestCreateBooking.class);
-                Response responseActual = BookingCollectionAPI.createBooking(request);
+                Response responseActual = BookingAPI.createBooking(request);
                 ResponseCreateBooking responseExpected = Helper.findResponseByUseCase("create_booking.json",
                                 "createBooking1", ResponseCreateBooking.class);
                 Assert.assertEquals(responseActual.statusCode(), 200, "Status code should be 200");
@@ -44,7 +44,7 @@ public class happyFlow extends BaseTest {
 
         @Test(priority = 2, dependsOnMethods = "createBooking")
         public void assertBookingAfterCreate() {
-                Response responseActual = BookingCollectionAPI.getBookingById(bookingId);
+                Response responseActual = BookingAPI.getBookingById(bookingId);
                 ResponseGetBookingByID responseExpected = Helper.findResponseByUseCase("get_booking_by_id.json",
                                 "getBookingAfterCreate", ResponseGetBookingByID.class);
                 Assert.assertEquals(responseActual.statusCode(), 200, "Status code should be 200");
@@ -67,7 +67,7 @@ public class happyFlow extends BaseTest {
         public void updateBooking() {
                 RequestUpdateBooking request = Helper.findPayloadByUseCase("update_booking.json", "updateBooking1",
                                 RequestUpdateBooking.class);
-                Response responseActual = BookingCollectionAPI.updateBooking(bookingId, request,
+                Response responseActual = BookingAPI.updateBooking(bookingId, request,
                                 token);
                 ResponseUpdateBooking responseExpected = Helper.findResponseByUseCase("update_booking.json",
                                 "updateBooking1", ResponseUpdateBooking.class);
@@ -89,7 +89,7 @@ public class happyFlow extends BaseTest {
 
         @Test(priority = 4, dependsOnMethods = "updateBooking")
         public void assertBookingAfterUpdate() {
-                Response responseActual = BookingCollectionAPI.getBookingById(bookingId);
+                Response responseActual = BookingAPI.getBookingById(bookingId);
                 ResponseGetBookingByID responseExpected = Helper.findResponseByUseCase("get_booking_by_id.json",
                                 "getBookingAfterUpdate", ResponseGetBookingByID.class);
                 Assert.assertEquals(responseActual.statusCode(), 200, "Status code should be 200");
@@ -112,7 +112,7 @@ public class happyFlow extends BaseTest {
                 RequestUpdateBooking request = Helper.findPayloadByUseCase("update_booking.json",
                                 "updatePartialBooking1",
                                 RequestUpdateBooking.class);
-                Response responseActual = BookingCollectionAPI.partialUpdateBooking(bookingId,
+                Response responseActual = BookingAPI.partialUpdateBooking(bookingId,
                                 request, token);
                 ResponseUpdateBooking responseExpected = Helper.findResponseByUseCase("update_booking.json",
                                 "updatePartialBooking1", ResponseUpdateBooking.class);
@@ -127,7 +127,7 @@ public class happyFlow extends BaseTest {
 
         @Test(priority = 6, dependsOnMethods = "updatePartialBooking")
         public void assertBookingAfterPartialUpdate() {
-                Response responseActual = BookingCollectionAPI.getBookingById(bookingId);
+                Response responseActual = BookingAPI.getBookingById(bookingId);
                 ResponseGetBookingByID responseExpected = Helper.findResponseByUseCase("get_booking_by_id.json",
                                 "getBookingAfterPartialUpdate", ResponseGetBookingByID.class);
                 Assert.assertEquals(responseActual.statusCode(), 200, "Status code should be 200");
@@ -147,13 +147,13 @@ public class happyFlow extends BaseTest {
 
         @Test(priority = 7, dependsOnMethods = "updatePartialBooking")
         public void deleteBooking() {
-                Response response = BookingCollectionAPI.deleteBooking(bookingId, token);
+                Response response = BookingAPI.deleteBooking(bookingId, token);
                 Assert.assertEquals(response.statusCode(), 201, "Status code should be 201");
         }
 
         @Test(priority = 8, dependsOnMethods = "deleteBooking")
         public void assertBookingAfterDelete() {
-                Response response = BookingCollectionAPI.getBookingById(bookingId);
+                Response response = BookingAPI.getBookingById(bookingId);
                 Assert.assertEquals(response.statusCode(), 404, "Status code should be 404");
         }
 }

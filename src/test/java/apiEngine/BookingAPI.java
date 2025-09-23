@@ -3,7 +3,7 @@ package apiEngine;
 import static io.restassured.RestAssured.given;
 import io.restassured.response.Response;
 
-public class BookingCollectionAPI {
+public class BookingAPI {
 
     public static Response getBookingById(String bookingId) {
         return given()
