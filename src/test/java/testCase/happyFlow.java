@@ -13,8 +13,7 @@ import apiEngine.BookingAPI;
 import io.restassured.response.Response;
 
 public class happyFlow extends BaseTest {
-        String bookingId, firstName, lastName, checkIn, checkOut;
-        int totalPrice;
+        String bookingId;
 
         @Test(priority = 1)
         public void createBooking() {

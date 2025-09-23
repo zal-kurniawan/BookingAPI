@@ -4,6 +4,8 @@ import static io.restassured.RestAssured.given;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.example.base.BaseTest;
+import com.example.model.request.RequestUpdateBooking;
+import com.example.utils.Helper;
 
 import apiEngine.BookingAPI;
 import io.restassured.response.Response;
@@ -51,37 +53,18 @@ public class negativeFlow extends BaseTest {
 
         @Test
         public void updateBookingWithoutAuth() {
-                String reqBody = "{\n" + //
-                                "    \"firstname\" : \"Budi\",\n" + //
-                                "    \"lastname\" : \"Brown\",\n" + //
-                                "    \"totalprice\" : 111,\n" + //
-                                "    \"depositpaid\" : true,\n" + //
-                                "    \"bookingdates\" : {\n" + //
-                                "        \"checkin\" : \"2018-01-01\",\n" + //
-                                "        \"checkout\" : \"2019-01-01\"\n" + //
-                                "    },\n" + //
-                                "    \"additionalneeds\" : \"Breakfast\"\n" + //
-                                "}";
-
-                Response response = BookingAPI.updateBooking("1", reqBody, "");
+                RequestUpdateBooking request = Helper.findPayloadByUseCase("update_booking.json", "updateWithoutAuth",
+                                RequestUpdateBooking.class);
+                Response response = BookingAPI.updateBooking("1", request, "");
                 Assert.assertEquals(response.statusCode(), 403, "Forbidden");
         }
 
         @Test
         public void updateBookingWithInvalidAuth() {
-                String reqBody = "{\n" + //
-                                "    \"firstname\" : \"Budi\",\n" + //
-                                "    \"lastname\" : \"Brown\",\n" + //
-                                "    \"totalprice\" : 111,\n" + //
-                                "    \"depositpaid\" : true,\n" + //
-                                "    \"bookingdates\" : {\n" + //
-                                "        \"checkin\" : \"2018-01-01\",\n" + //
-                                "        \"checkout\" : \"2019-01-01\"\n" + //
-                                "    },\n" + //
-                                "    \"additionalneeds\" : \"Breakfast\"\n" + //
-                                "}";
-
-                Response response = BookingAPI.updateBooking("1", reqBody, "invalidtoken");
+                RequestUpdateBooking request = Helper.findPayloadByUseCase("update_booking.json",
+                                "updateWithInvalidAuth",
+                                RequestUpdateBooking.class);
+                Response response = BookingAPI.updateBooking("1", request, "invalidtoken");
                 Assert.assertEquals(response.statusCode(), 403, "Forbidden");
         }
 }

@@ -42,5 +42,33 @@
             },
             "additionalneeds": "Dinner, Smooking Room, Private Pool"
         }
+    },
+    {
+        "usecase": "updateWithoutAuth",
+        "payload": {
+            "firstname": "James",
+            "lastname": "Brown",
+            "totalprice": 111,
+            "depositpaid": true,
+            "bookingdates": {
+                "checkin": "2018-01-01",
+                "checkout": "2019-01-01"
+            },
+            "additionalneeds": "Breakfast"
+        }
+    },
+    {
+        "usecase": "updateWithInvalidAuth",
+        "payload": {
+            "firstname": "Jhon",
+            "lastname": "Doe",
+            "totalprice": 50000,
+            "depositpaid": true,
+            "bookingdates": {
+                "checkin": "2018-01-01",
+                "checkout": "2019-01-01"
+            },
+            "additionalneeds": "Breakfast"
+        }
     }
 ]
