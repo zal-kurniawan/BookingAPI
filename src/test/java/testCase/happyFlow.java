@@ -1,9 +1,20 @@
 package testCase;
 
+import static io.restassured.RestAssured.request;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.example.base.BaseTest;
-import apiengine.BookingCollectionAPI;
+import com.example.model.request.RequestCreateBooking;
+import com.example.model.request.RequestUpdateBooking;
+import com.example.model.response.ResponseCreateBooking;
+import com.example.model.response.ResponseGetBookingByID;
+import com.example.model.response.ResponseUpdateBooking;
+import com.example.utils.Helper;
+import apiEngine.BookingCollectionAPI;
 import io.restassured.response.Response;
 
 public class happyFlow extends BaseTest {
@@ -12,96 +23,131 @@ public class happyFlow extends BaseTest {
 
         @Test(priority = 1)
         public void createBooking() {
-                firstName = "Budi";
-                lastName = "Idub";
-                totalPrice = 1500000;
-                checkIn = "2025-09-16";
-                checkOut = "2025-09-17";
-                String reqBody = "{\n" + //
-                                "    \"firstname\" : \"" + firstName + "\",\n" + //
-                                "    \"lastname\" : \"" + lastName + "\",\n" + //
-                                "    \"totalprice\" : " + totalPrice + ",\n" + //
-                                "    \"depositpaid\" : true,\n" + //
-                                "    \"bookingdates\" : {\n" + //
-                                "        \"checkin\" : \"" + checkIn + "\",\n" + //
-                                "        \"checkout\" : \"" + checkOut + "\"\n" + //
-                                "    },\n" + //
-                                "    \"additionalneeds\" : \"Dinner\"\n" + //
-                                "}";
-                Response response = BookingCollectionAPI.createBooking(reqBody);
-                Assert.assertEquals(response.statusCode(), 200, "Status code should be 200");
-                Assert.assertNotNull(response.jsonPath().getString("bookingid"), "Booking ID should not be null");
-                bookingId = response.jsonPath().getString("bookingid");
+                RequestCreateBooking request = Helper.findPayloadByUseCase("create_booking.json", "createBooking1",
+                                RequestCreateBooking.class);
+                Response responseActual = BookingCollectionAPI.createBooking(request);
+                ResponseCreateBooking responseExpected = Helper.findResponseByUseCase("create_booking.json",
+                                "createBooking1", ResponseCreateBooking.class);
+                Assert.assertEquals(responseActual.statusCode(), 200, "Status code should be 200");
+                Assert.assertNotNull(responseActual.jsonPath().getString("bookingid"), "Booking ID should not be null");
+                bookingId = responseActual.jsonPath().getString("bookingid");
+                Assert.assertEquals(responseActual.jsonPath().getString("booking.firstname"),
+                                responseExpected.booking.firstname);
+                Assert.assertEquals(responseActual.jsonPath().getString("booking.lastname"),
+                                responseExpected.booking.lastname);
+                Assert.assertEquals(responseActual.jsonPath().getInt("booking.totalprice"),
+                                responseExpected.booking.totalprice);
+                Assert.assertEquals(responseActual.jsonPath().getBoolean("booking.depositpaid"),
+                                responseExpected.booking.depositpaid);
+                Assert.assertEquals(responseActual.jsonPath().getString("booking.bookingdates.checkin"),
+                                responseExpected.booking.bookingdates.checkin);
+                Assert.assertEquals(responseActual.jsonPath().getString("booking.bookingdates.checkout"),
+                                responseExpected.booking.bookingdates.checkout);
+                Assert.assertEquals(responseActual.jsonPath().getString("booking.additionalneeds"),
+                                responseExpected.booking.additionalneeds);
         }
 
         @Test(priority = 2, dependsOnMethods = "createBooking")
         public void assertBookingAfterCreate() {
-                Response response = BookingCollectionAPI.getBookingById(bookingId);
-                Assert.assertEquals(response.statusCode(), 200, "Status code should be 200");
-                Assert.assertEquals(response.jsonPath().getString("firstname"), firstName);
-                Assert.assertEquals(response.jsonPath().getString("lastname"), lastName);
-                Assert.assertEquals(response.jsonPath().getInt("totalprice"), totalPrice);
-                Assert.assertEquals(response.jsonPath().getString("bookingdates.checkin"),
-                                checkIn);
-                Assert.assertEquals(response.jsonPath().getString("bookingdates.checkout"),
-                                checkOut);
+                Response responseActual = BookingCollectionAPI.getBookingById(bookingId);
+                ResponseGetBookingByID responseExpected = Helper.findResponseByUseCase("get_booking_by_id.json",
+                                "getBookingAfterCreate", ResponseGetBookingByID.class);
+                Assert.assertEquals(responseActual.statusCode(), 200, "Status code should be 200");
+                Assert.assertEquals(responseActual.jsonPath().getString("firstname"),
+                                responseExpected.firstname);
+                Assert.assertEquals(responseActual.jsonPath().getString("lastname"),
+                                responseExpected.lastname);
+                Assert.assertEquals(responseActual.jsonPath().getInt("totalprice"), responseExpected.totalprice);
+                Assert.assertEquals(responseActual.jsonPath().getBoolean("depositpaid"), responseExpected.depositpaid);
+                Assert.assertEquals(responseActual.jsonPath().getString("bookingdates.checkin"),
+                                responseExpected.bookingdates.checkin);
+                Assert.assertEquals(responseActual.jsonPath().getString("bookingdates.checkout"),
+                                responseExpected.bookingdates.checkout);
+                Assert.assertEquals(responseActual.jsonPath().getString("additionalneeds"),
+                                responseExpected.additionalneeds);
 
         }
 
         @Test(priority = 3, dependsOnMethods = "createBooking")
         public void updateBooking() {
-                firstName = "Joko";
-                lastName = "Fernando";
-                totalPrice = 2000000;
-                checkIn = "2025-09-20";
-                checkOut = "2025-09-21";
-                String reqBody = "{\n" + //
-                                " \"firstname\" : \"" + firstName + "\",\n" + //
-                                " \"lastname\" : \"" + lastName + "\",\n" + //
-                                " \"totalprice\" : " + totalPrice + ",\n" + //
-                                " \"depositpaid\" : true,\n" + //
-                                " \"bookingdates\" : {\n" + //
-                                " \"checkin\" : \"" + checkIn + "\",\n" + //
-                                " \"checkout\" : \"" + checkOut + "\"\n" + //
-                                " },\n" + //
-                                " \"additionalneeds\" : \"Dinner\"\n" + //
-                                "}";
-
-                Response response = BookingCollectionAPI.updateBooking(bookingId, reqBody, token);
-                Assert.assertEquals(response.statusCode(), 200, "Status code should be 200");
+                RequestUpdateBooking request = Helper.findPayloadByUseCase("update_booking.json", "updateBooking1",
+                                RequestUpdateBooking.class);
+                Response responseActual = BookingCollectionAPI.updateBooking(bookingId, request,
+                                token);
+                ResponseUpdateBooking responseExpected = Helper.findResponseByUseCase("update_booking.json",
+                                "updateBooking1", ResponseUpdateBooking.class);
+                // Assertion
+                Assert.assertEquals(responseActual.statusCode(), 200, "Status code should be 200");
+                Assert.assertEquals(responseActual.jsonPath().getString("firstname"),
+                                responseExpected.firstname);
+                Assert.assertEquals(responseActual.jsonPath().getString("lastname"),
+                                responseExpected.lastname);
+                Assert.assertEquals(responseActual.jsonPath().getInt("totalprice"), responseExpected.totalprice);
+                Assert.assertEquals(responseActual.jsonPath().getBoolean("depositpaid"), responseExpected.depositpaid);
+                Assert.assertEquals(responseActual.jsonPath().getString("bookingdates.checkin"),
+                                responseExpected.bookingdates.checkin);
+                Assert.assertEquals(responseActual.jsonPath().getString("bookingdates.checkout"),
+                                responseExpected.bookingdates.checkout);
+                Assert.assertEquals(responseActual.jsonPath().getString("additionalneeds"),
+                                responseExpected.additionalneeds);
         }
 
         @Test(priority = 4, dependsOnMethods = "updateBooking")
         public void assertBookingAfterUpdate() {
-                Response response = BookingCollectionAPI.getBookingById(bookingId);
-                Assert.assertEquals(response.statusCode(), 200, "Status code should be 200");
-                Assert.assertEquals(response.jsonPath().getString("firstname"), firstName);
-                Assert.assertEquals(response.jsonPath().getString("lastname"), lastName);
-                Assert.assertEquals(response.jsonPath().getInt("totalprice"), totalPrice);
-                Assert.assertEquals(response.jsonPath().getString("bookingdates.checkin"),
-                                checkIn);
-                Assert.assertEquals(response.jsonPath().getString("bookingdates.checkout"),
-                                checkOut);
+                Response responseActual = BookingCollectionAPI.getBookingById(bookingId);
+                ResponseGetBookingByID responseExpected = Helper.findResponseByUseCase("get_booking_by_id.json",
+                                "getBookingAfterUpdate", ResponseGetBookingByID.class);
+                Assert.assertEquals(responseActual.statusCode(), 200, "Status code should be 200");
+                Assert.assertEquals(responseActual.jsonPath().getString("firstname"),
+                                responseExpected.firstname);
+                Assert.assertEquals(responseActual.jsonPath().getString("lastname"),
+                                responseExpected.lastname);
+                Assert.assertEquals(responseActual.jsonPath().getInt("totalprice"), responseExpected.totalprice);
+                Assert.assertEquals(responseActual.jsonPath().getBoolean("depositpaid"), responseExpected.depositpaid);
+                Assert.assertEquals(responseActual.jsonPath().getString("bookingdates.checkin"),
+                                responseExpected.bookingdates.checkin);
+                Assert.assertEquals(responseActual.jsonPath().getString("bookingdates.checkout"),
+                                responseExpected.bookingdates.checkout);
+                Assert.assertEquals(responseActual.jsonPath().getString("additionalneeds"),
+                                responseExpected.additionalneeds);
         }
 
         @Test(priority = 5, dependsOnMethods = "updateBooking")
         public void updatePartialBooking() {
-                firstName = "Jojon";
-                lastName = "Sudarsono";
-                String reqBody = "{\n" + //
-                                "    \"firstname\" : \"" + firstName + "\",\n" + //
-                                "    \"lastname\" : \"" + lastName + "\"\n" + //
-                                "}";
-                Response response = BookingCollectionAPI.partialUpdateBooking(bookingId, reqBody, token);
-                Assert.assertEquals(response.statusCode(), 200, "Status code should be 200");
+                RequestUpdateBooking request = Helper.findPayloadByUseCase("update_booking.json",
+                                "updatePartialBooking1",
+                                RequestUpdateBooking.class);
+                Response responseActual = BookingCollectionAPI.partialUpdateBooking(bookingId,
+                                request, token);
+                ResponseUpdateBooking responseExpected = Helper.findResponseByUseCase("update_booking.json",
+                                "updatePartialBooking1", ResponseUpdateBooking.class);
+                Assert.assertEquals(responseActual.statusCode(), 200, "Status code should be 200");
+                Assert.assertEquals(responseActual.jsonPath().getString("firstname"),
+                                responseExpected.firstname);
+                Assert.assertEquals(responseActual.jsonPath().getString("lastname"),
+                                responseExpected.lastname);
+                Assert.assertEquals(responseActual.jsonPath().getString("additionalneeds"),
+                                responseExpected.additionalneeds);
         }
 
         @Test(priority = 6, dependsOnMethods = "updatePartialBooking")
         public void assertBookingAfterPartialUpdate() {
-                Response response = BookingCollectionAPI.getBookingById(bookingId);
-                Assert.assertEquals(response.statusCode(), 200, "Status code should be 200");
-                Assert.assertEquals(response.jsonPath().getString("firstname"), firstName);
-                Assert.assertEquals(response.jsonPath().getString("lastname"), lastName);
+                Response responseActual = BookingCollectionAPI.getBookingById(bookingId);
+                ResponseGetBookingByID responseExpected = Helper.findResponseByUseCase("get_booking_by_id.json",
+                                "getBookingAfterPartialUpdate", ResponseGetBookingByID.class);
+                Assert.assertEquals(responseActual.statusCode(), 200, "Status code should be 200");
+                Assert.assertEquals(responseActual.jsonPath().getString("firstname"),
+                                responseExpected.firstname);
+                Assert.assertEquals(responseActual.jsonPath().getString("lastname"),
+                                responseExpected.lastname);
+                Assert.assertEquals(responseActual.jsonPath().getInt("totalprice"), responseExpected.totalprice);
+                Assert.assertEquals(responseActual.jsonPath().getBoolean("depositpaid"), responseExpected.depositpaid);
+                Assert.assertEquals(responseActual.jsonPath().getString("bookingdates.checkin"),
+                                responseExpected.bookingdates.checkin);
+                Assert.assertEquals(responseActual.jsonPath().getString("bookingdates.checkout"),
+                                responseExpected.bookingdates.checkout);
+                Assert.assertEquals(responseActual.jsonPath().getString("additionalneeds"),
+                                responseExpected.additionalneeds);
         }
 
         @Test(priority = 7, dependsOnMethods = "updatePartialBooking")

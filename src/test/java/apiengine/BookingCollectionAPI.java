@@ -1,4 +1,4 @@
-package apiengine;
+package apiEngine;
 
 import static io.restassured.RestAssured.given;
 import io.restassured.response.Response;
@@ -11,14 +11,15 @@ public class BookingCollectionAPI {
                 .get("booking/" + bookingId);
     }
 
-    public static Response createBooking(String reqBody) {
+    public static <T> Response createBooking(T reqBody) {
         return given()
                 .body(reqBody)
                 .when()
                 .post("booking");
+
     }
 
-    public static Response updateBooking(String bookingId, String reqBody, String token) {
+    public static <T> Response updateBooking(String bookingId, T reqBody, String token) {
         return given()
                 .header("Cookie", "token=" + token)
                 .body(reqBody)
@@ -26,8 +27,8 @@ public class BookingCollectionAPI {
                 .put("booking/" + bookingId);
     }
 
-    public static Response partialUpdateBooking(String bookingId, String reqBody, String token) {
-        return given()
+    public static <T> Response partialUpdateBooking(String bookingId, T reqBody, String token) {
+        return given().log().all()
                 .header("Cookie", "token=" + token)
                 .body(reqBody)
                 .when()

@@ -1,0 +1,30 @@
+[
+    {
+        "usecase": "createBooking1",
+        "payload": {
+            "firstname" : "Budi",
+            "lastname" : "Darmono",
+            "totalprice" : 5000000,
+            "depositpaid" : true,
+            "bookingdates" : {
+                "checkin" : "2025-09-29",
+                "checkout" : "2025-09-30"
+            },
+            "additionalneeds" : "Breakfast, Smooking Room"
+        },
+        "response": {
+            "bookingid": 1,
+            "booking": {
+                "firstname": "Budi",
+                "lastname": "Darmono",
+                "totalprice": 5000000,
+                "depositpaid": true,
+                "bookingdates": {
+                    "checkin": "2025-09-29",
+                    "checkout": "2025-09-30"
+                },
+                "additionalneeds": "Breakfast, Smooking Room"
+            }
+        }
+    }
+]

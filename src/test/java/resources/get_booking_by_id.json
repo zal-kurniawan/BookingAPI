@@ -1,0 +1,44 @@
+[
+    {
+        "usecase": "getBookingAfterCreate",
+        "response": {
+            "firstname": "Budi",
+            "lastname": "Darmono",
+            "totalprice": 5000000,
+            "depositpaid": true,
+            "bookingdates": {
+                "checkin": "2025-09-29",
+                "checkout": "2025-09-30"
+            },
+            "additionalneeds": "Breakfast, Smooking Room"
+        }
+    },
+    {
+        "usecase": "getBookingAfterUpdate",
+        "response": {
+            "firstname" : "Joko",
+            "lastname" : "Fernando",
+            "totalprice" : 6000000,
+            "depositpaid" : true,
+            "bookingdates" : {
+                "checkin" : "2025-10-01",
+                "checkout" : "2025-10-03"
+            },
+            "additionalneeds" : "Dinner, Smooking Room"
+        }
+    },
+    {
+        "usecase": "getBookingAfterPartialUpdate",
+        "response":{
+            "firstname" : "James",
+            "lastname" : "Brown",
+            "totalprice" : 6000000,
+            "depositpaid" : true,
+            "bookingdates" : {
+                "checkin" : "2025-10-01",
+                "checkout" : "2025-10-03"
+            },
+            "additionalneeds" : "Dinner, Smooking Room, Private Pool"
+        }
+    }
+]
