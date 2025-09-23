@@ -1,0 +1,16 @@
+[
+    {
+        "usecase": "validAuth",
+        "payload": {
+            "username": "admin",
+            "password": "password123"
+        }
+    },
+    {
+        "usecase": "invalidAuth",
+        "payload": {
+            "username": "admin",
+            "password": "admin"
+        }
+    }
+]

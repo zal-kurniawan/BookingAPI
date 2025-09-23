@@ -4,6 +4,7 @@ import static io.restassured.RestAssured.given;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.example.base.BaseTest;
+import com.example.model.request.RequestAuth;
 import com.example.model.request.RequestUpdateBooking;
 import com.example.utils.Helper;
 
@@ -13,15 +14,12 @@ import io.restassured.response.Response;
 public class negativeFlow extends BaseTest {
         @Test
         public void authWithInvalidCredentials() {
-                String reqBody = "{\n" + //
-                                "    \"username\" : \"admin\",\n" + //
-                                "    \"password\" : \"admin\"\n" + //
-                                "}";
-
+                RequestAuth request = Helper.findPayloadByUseCase("authorization.json", "invalidAuth",
+                                RequestAuth.class);
                 Response response = given()
                                 .baseUri("https://restful-booker.herokuapp.com/auth")
                                 .header("Content-Type", "application/json")
-                                .body(reqBody)
+                                .body(request)
                                 .when()
                                 .post();
                 // Assertion
@@ -32,33 +30,16 @@ public class negativeFlow extends BaseTest {
         @Test
         public void bookingIdDoesNotExist() {
                 Response response = BookingAPI.getBookingById("9999999");
-                Assert.assertEquals(response.statusCode(), 404, "non-existent booking ID");
-        }
-
-        @Test
-        public void createBookingWithInvalidData() {
-                String reqBody = "{\n" + //
-                                "    \"firstname\" : \"Jim\",\n" + //
-                                "    \"lastname\" : \"Brown\",\n" + //
-                                "    \"totalprice\" : 111,\n" + //
-                                "    \"depositpaid\" : true,\n" + //
-                                "    \"bookingdates\" : {\n" + //
-                                "        \"checkin\" : 2018-01-01,\n" + //
-                                "        \"checkout\" : 2019-01-01\n" + //
-                                "    },\n" + //
-                                "    \"additionalneeds\" : \"Breakfast\"\n" + //
-                                "}";
-                Response response = BookingAPI.createBooking(reqBody);
                 // Assertion
-                Assert.assertEquals(response.statusCode(), 400, "Bad Request");
+                Assert.assertEquals(response.statusCode(), 404, "non-existent booking ID");
         }
 
         @Test
         public void updateBookingWithoutAuth() {
                 RequestUpdateBooking request = Helper.findPayloadByUseCase("update_booking.json", "updateWithoutAuth",
                                 RequestUpdateBooking.class);
-                // Assertion
                 Response response = BookingAPI.updateBooking("1", request, "");
+                // Assertion
                 Assert.assertEquals(response.statusCode(), 403, "Forbidden");
         }
 
@@ -67,8 +48,23 @@ public class negativeFlow extends BaseTest {
                 RequestUpdateBooking request = Helper.findPayloadByUseCase("update_booking.json",
                                 "updateWithInvalidAuth",
                                 RequestUpdateBooking.class);
-                // Assertion
+
                 Response response = BookingAPI.updateBooking("1", request, "invalidtoken");
+                // Assertion
+                Assert.assertEquals(response.statusCode(), 403, "Forbidden");
+        }
+
+        @Test
+        public void deleteBookingWithoutAuth() {
+                Response response = BookingAPI.deleteBooking("1", "");
+                // Assertion
+                Assert.assertEquals(response.statusCode(), 403, "Forbidden");
+        }
+
+        @Test
+        public void deleteBookingWithInvalidAuth() {
+                Response response = BookingAPI.deleteBooking("1", "invalidtoken");
+                // Assertion
                 Assert.assertEquals(response.statusCode(), 403, "Forbidden");
         }
 }
