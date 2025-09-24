@@ -43,7 +43,7 @@ public class happyFlow extends BaseTest {
         }
 
         @Test(priority = 2, dependsOnMethods = "createBooking")
-        public void assertBookingAfterCreate() {
+        public void getBookingAfterCreate() {
                 Response responseActual = BookingAPI.getBookingById(bookingId);
                 ResponseGetBookingByID responseExpected = Helper.findResponseByUseCase("get_booking_by_id.json",
                                 "getBookingAfterCreate", ResponseGetBookingByID.class);
@@ -89,7 +89,7 @@ public class happyFlow extends BaseTest {
         }
 
         @Test(priority = 4, dependsOnMethods = "updateBooking")
-        public void assertBookingAfterUpdate() {
+        public void getBookingAfterUpdate() {
                 Response responseActual = BookingAPI.getBookingById(bookingId);
                 ResponseGetBookingByID responseExpected = Helper.findResponseByUseCase("get_booking_by_id.json",
                                 "getBookingAfterUpdate", ResponseGetBookingByID.class);
@@ -129,7 +129,7 @@ public class happyFlow extends BaseTest {
         }
 
         @Test(priority = 6, dependsOnMethods = "updatePartialBooking")
-        public void assertBookingAfterPartialUpdate() {
+        public void getBookingAfterCreateBookingAfterPartialUpdate() {
                 Response responseActual = BookingAPI.getBookingById(bookingId);
                 ResponseGetBookingByID responseExpected = Helper.findResponseByUseCase("get_booking_by_id.json",
                                 "getBookingAfterPartialUpdate", ResponseGetBookingByID.class);
@@ -157,7 +157,7 @@ public class happyFlow extends BaseTest {
         }
 
         @Test(priority = 8, dependsOnMethods = "deleteBooking")
-        public void assertBookingAfterDelete() {
+        public void getBookingAfterDelete() {
                 Response response = BookingAPI.getBookingById(bookingId);
                 // Assertion
                 Assert.assertEquals(response.statusCode(), 404, "Status code should be 404");
