@@ -110,7 +110,7 @@ public class happyFlow extends BaseTest {
         }
 
         @Test(priority = 5, dependsOnMethods = "updateBooking")
-        public void updatePartialBooking() {
+        public void partialUpdateBooking() {
                 RequestUpdateBooking request = Helper.findPayloadByUseCase("update_booking.json",
                                 "updatePartialBooking1",
                                 RequestUpdateBooking.class);
@@ -128,8 +128,8 @@ public class happyFlow extends BaseTest {
                                 responseExpected.additionalneeds);
         }
 
-        @Test(priority = 6, dependsOnMethods = "updatePartialBooking")
-        public void getBookingAfterCreateBookingAfterPartialUpdate() {
+        @Test(priority = 6, dependsOnMethods = "partialUpdateBooking")
+        public void getBookingAfterPartialUpdate() {
                 Response responseActual = BookingAPI.getBookingById(bookingId);
                 ResponseGetBookingByID responseExpected = Helper.findResponseByUseCase("get_booking_by_id.json",
                                 "getBookingAfterPartialUpdate", ResponseGetBookingByID.class);
@@ -149,7 +149,7 @@ public class happyFlow extends BaseTest {
                                 responseExpected.additionalneeds);
         }
 
-        @Test(priority = 7, dependsOnMethods = "updatePartialBooking")
+        @Test(priority = 7, dependsOnMethods = "partialUpdateBooking")
         public void deleteBooking() {
                 Response response = BookingAPI.deleteBooking(bookingId, token);
                 // Assertion
